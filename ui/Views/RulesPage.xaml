@@ -16,18 +16,21 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Margin="0,0,0,12">
-            <WrapPanel>
-                <Button Content="+ Новая группа" Style="{StaticResource SecondaryButton}"
-                        Click="AddGroup_Click" Margin="0,0,8,8"/>
-                <Button Content="🗑 Удалить группу" Style="{StaticResource SecondaryButton}"
-                        Click="DeleteGroup_Click" Margin="0,0,8,8"/>
-                <Button Content="💾 Сохранить и применить" Style="{StaticResource PrimaryButton}"
-                        Click="SaveApply_Click" Margin="0,0,8,8"/>
-                <Button Content="⇩ Обновить списки" Style="{StaticResource SecondaryButton}"
-                        Click="UpdateRulesets_Click" Margin="0,0,8,8"/>
-            </WrapPanel>
-            <TextBlock x:Name="StatusText" Margin="0,2,0,0" VerticalAlignment="Center"
-                       Style="{StaticResource Dim}"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="+ Группа" ToolTip="Новая группа" Padding="12,7"
+                        Style="{StaticResource SecondaryButton}"
+                        Click="AddGroup_Click" Margin="0,0,8,0"/>
+                <Button Content="🗑 Удалить" ToolTip="Удалить группу" Padding="12,7"
+                        Style="{StaticResource SecondaryButton}"
+                        Click="DeleteGroup_Click" Margin="0,0,8,0"/>
+                <Button Content="💾 Сохранить" ToolTip="Сохранить и применить" Padding="12,7"
+                        Style="{StaticResource PrimaryButton}"
+                        Click="SaveApply_Click" Margin="0,0,8,0"/>
+                <Button Content="⇩ Обновить" ToolTip="Обновить списки правил" Padding="12,7"
+                        Style="{StaticResource SecondaryButton}"
+                        Click="UpdateRulesets_Click"/>
+            </StackPanel>
+            <TextBlock x:Name="StatusText" Margin="0,6,0,0" Style="{StaticResource Dim}"/>
         </StackPanel>
 
         <Grid Grid.Row="2">

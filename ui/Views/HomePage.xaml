@@ -21,13 +21,10 @@
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                         <Button x:Name="BtnStart" Content="▶  Запустить"
                                 Style="{StaticResource PrimaryButton}"
-                                Click="BtnStart_Click" Margin="0,0,8,0" MinWidth="140"/>
+                                Click="BtnStartOrRestart_Click" Margin="0,0,8,0" MinWidth="180"/>
                         <Button x:Name="BtnStop" Content="■  Остановить"
                                 Style="{StaticResource DangerButton}"
-                                Click="BtnStop_Click" Margin="0,0,8,0" MinWidth="140"/>
-                        <Button x:Name="BtnRestart" Content="↻  Перезапустить"
-                                Style="{StaticResource SecondaryButton}"
-                                Click="BtnRestart_Click" MinWidth="160"/>
+                                Click="BtnStop_Click" MinWidth="140"/>
                     </StackPanel>
                 </StackPanel>
             </Border>

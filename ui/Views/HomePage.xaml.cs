@@ -26,14 +26,22 @@ public partial class HomePage : UserControl
         var running = ProcessService.IsRunning;
         StateDot.Fill = (SolidColorBrush)FindResource(running ? "SuccessBrush" : "DangerBrush");
         StateText.Text = running ? "Запущен" : "Остановлен";
-        BtnStart.IsEnabled = !running;
+        // One button: "Запустить" when stopped, "Перезапустить" when running.
+        BtnStart.Content = running ? "↻  Перезапустить" : "▶  Запустить";
+        BtnStart.IsEnabled = true;
         BtnStop.IsEnabled = running;
     }
 
-    private async void BtnStart_Click(object sender, RoutedEventArgs e)
+    private async void BtnStartOrRestart_Click(object sender, RoutedEventArgs e)
     {
         SetBusy(true);
-        try { await ProcessService.StartAsync(); }
+        try
+        {
+            if (ProcessService.IsRunning)
+                await ProcessService.RestartAsync();
+            else
+                await ProcessService.StartAsync();
+        }
         finally { SetBusy(false); UpdateState(); }
     }
 
@@ -44,18 +52,10 @@ public partial class HomePage : UserControl
         finally { SetBusy(false); UpdateState(); }
     }
 
-    private async void BtnRestart_Click(object sender, RoutedEventArgs e)
-    {
-        SetBusy(true);
-        try { await ProcessService.RestartAsync(); }
-        finally { SetBusy(false); UpdateState(); }
-    }
-
     private void SetBusy(bool busy)
     {
-        BtnStart.IsEnabled = !busy && !ProcessService.IsRunning;
+        BtnStart.IsEnabled = !busy;
         BtnStop.IsEnabled = !busy && ProcessService.IsRunning;
-        BtnRestart.IsEnabled = !busy;
     }
 
     private void BtnGenWarp_Click(object sender, RoutedEventArgs e)
