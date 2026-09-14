@@ -1,0 +1,20 @@
+# .NET build output
+bin/
+obj/
+*.user
+.vs/
+
+# Publish output
+publish/
+*.pdb
+
+# Local packaging artifacts
+dist/
+out/
+redist/
+*.bak
+
+# Never commit real tunnel configs / secrets
+warp.conf
+geo.conf
+config.json

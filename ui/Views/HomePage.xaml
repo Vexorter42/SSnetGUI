@@ -1,0 +1,104 @@
+<UserControl x:Class="SSnetUI.Views.HomePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="{StaticResource BgBrush}">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="32">
+        <StackPanel MaxWidth="640" HorizontalAlignment="Left">
+
+            <TextBlock Text="Главная" Style="{StaticResource H1}"/>
+            <TextBlock Text="Управление прокси-сервисом" Style="{StaticResource Dim}" Margin="0,4,0,24"/>
+
+            <Border Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="Состояние" Style="{StaticResource H2}"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                        <Ellipse x:Name="StateDot" Width="12" Height="12"
+                                 Fill="{StaticResource DangerBrush}" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="StateText" Text="Остановлен" Margin="10,0,0,0"
+                                   FontSize="16" Foreground="{StaticResource TextBrush}" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                        <Button x:Name="BtnStart" Content="▶  Запустить"
+                                Style="{StaticResource PrimaryButton}"
+                                Click="BtnStart_Click" Margin="0,0,8,0" MinWidth="140"/>
+                        <Button x:Name="BtnStop" Content="■  Остановить"
+                                Style="{StaticResource DangerButton}"
+                                Click="BtnStop_Click" Margin="0,0,8,0" MinWidth="140"/>
+                        <Button x:Name="BtnRestart" Content="↻  Перезапустить"
+                                Style="{StaticResource SecondaryButton}"
+                                Click="BtnRestart_Click" MinWidth="160"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Margin="0,16,0,0">
+                <StackPanel>
+                    <TextBlock Text="WARP-аккаунт" Style="{StaticResource H2}"/>
+                    <TextBlock TextWrapping="Wrap" Style="{StaticResource Dim}" Margin="0,4,0,0"
+                               Text="Если WARP-сайты (YouTube, Discord) перестали открываться — ключ Cloudflare протух. Сгенерируй новый аккаунт одной кнопкой."/>
+                    <StackPanel Orientation="Horizontal" Margin="0,14,0,0">
+                        <Button x:Name="BtnWarp" Content="⟳  Обновить WARP-ключи"
+                                Style="{StaticResource PrimaryButton}"
+                                Click="BtnWarp_Click" MinWidth="220"/>
+                        <TextBlock x:Name="WarpStatus" Margin="16,0,0,0" VerticalAlignment="Center"
+                                   Style="{StaticResource Dim}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Margin="0,16,0,0">
+                <StackPanel>
+                    <TextBlock Text="Обновления" Style="{StaticResource H2}"/>
+                    <TextBlock x:Name="VersionText" Style="{StaticResource Dim}" Margin="0,4,0,0"
+                               Text="Текущая версия: —"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,14,0,0">
+                        <Button x:Name="BtnCheckUpdate" Content="⭳  Проверить обновления"
+                                Style="{StaticResource SecondaryButton}"
+                                Click="BtnCheckUpdate_Click" MinWidth="220"/>
+                        <TextBlock x:Name="UpdateStatus" Margin="16,0,0,0" VerticalAlignment="Center"
+                                   Style="{StaticResource Dim}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Margin="0,16,0,0">
+                <StackPanel>
+                    <TextBlock Text="Быстрые ссылки" Style="{StaticResource H2}"/>
+                    <UniformGrid Columns="2" Margin="0,12,0,0">
+                        <Button Content="Открыть папку приложения"
+                                Style="{StaticResource SecondaryButton}"
+                                Click="OpenAppFolder_Click" Margin="0,4,4,4"/>
+                        <Button Content="Открыть settings.json"
+                                Style="{StaticResource SecondaryButton}"
+                                Click="OpenSettingsFile_Click" Margin="4,4,0,4"/>
+                        <Button Content="Открыть config.json"
+                                Style="{StaticResource SecondaryButton}"
+                                Click="OpenConfigFile_Click" Margin="0,4,4,4"/>
+                        <Button Content="Открыть rules.json"
+                                Style="{StaticResource SecondaryButton}"
+                                Click="OpenRulesFile_Click" Margin="4,4,0,4"/>
+                    </UniformGrid>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Margin="0,16,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock Text="Нравится проект?" Style="{StaticResource H2}"/>
+                        <TextBlock Text="Поддержи разработку любой суммой — это помогает держать проект живым."
+                                   Style="{StaticResource Dim}" Margin="0,4,0,0" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <Button Grid.Column="1" Content="❤  Поддержать"
+                            Style="{StaticResource PrimaryButton}"
+                            Click="BtnSupport_Click" MinWidth="150" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
