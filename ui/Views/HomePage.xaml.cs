@@ -58,44 +58,18 @@ public partial class HomePage : UserControl
         BtnRestart.IsEnabled = !busy;
     }
 
-    private async void BtnWarp_Click(object sender, RoutedEventArgs e)
+    private void BtnGenWarp_Click(object sender, RoutedEventArgs e)
     {
-        var confirm = MessageBox.Show(
-            "Сгенерировать новый WARP-аккаунт Cloudflare?\n\n" +
-            "Старые warp.conf и config.json будут сохранены в .bak.\n" +
-            "После генерации sing-box перезапустится.",
-            "Обновить WARP", MessageBoxButton.YesNo, MessageBoxImage.Question);
-        if (confirm != MessageBoxResult.Yes) return;
+        var dlg = GenerateConfigDialog.ForWarp();
+        dlg.Owner = Window.GetWindow(this);
+        dlg.ShowDialog();
+    }
 
-        BtnWarp.IsEnabled = false;
-        WarpStatus.Text = "Регистрируем новый аккаунт…";
-        try
-        {
-            var result = await Services.WarpService.RegenerateAsync();
-            if (result.Ok)
-            {
-                WarpStatus.Text = $"Готово · {DateTime.Now:HH:mm:ss}. Перезапуск…";
-                await ProcessService.RestartAsync();
-                WarpStatus.Text = $"WARP обновлён · {DateTime.Now:HH:mm:ss}";
-                MessageBox.Show(result.Message, "WARP обновлён",
-                    MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-            {
-                WarpStatus.Text = "Не удалось";
-                MessageBox.Show(result.Message, "Ошибка WARP",
-                    MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        catch (Exception ex)
-        {
-            WarpStatus.Text = "Ошибка";
-            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
-        finally
-        {
-            BtnWarp.IsEnabled = true;
-        }
+    private void BtnGenGeo_Click(object sender, RoutedEventArgs e)
+    {
+        var dlg = GenerateConfigDialog.ForGeo();
+        dlg.Owner = Window.GetWindow(this);
+        dlg.ShowDialog();
     }
 
     private async void BtnCheckUpdate_Click(object sender, RoutedEventArgs e)

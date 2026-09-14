@@ -34,16 +34,17 @@
 
             <Border Style="{StaticResource Card}" Margin="0,16,0,0">
                 <StackPanel>
-                    <TextBlock Text="WARP-аккаунт" Style="{StaticResource H2}"/>
+                    <TextBlock Text="Генерация конфигов" Style="{StaticResource H2}"/>
                     <TextBlock TextWrapping="Wrap" Style="{StaticResource Dim}" Margin="0,4,0,0"
-                               Text="Если WARP-сайты (YouTube, Discord) перестали открываться — ключ Cloudflare протух. Сгенерируй новый аккаунт одной кнопкой."/>
-                    <StackPanel Orientation="Horizontal" Margin="0,14,0,0">
-                        <Button x:Name="BtnWarp" Content="⟳  Обновить WARP-ключи"
+                               Text="Если сайты перестали открываться — конфиг туннеля протух. Сгенерируй свежий по инструкции и вставь его в Конфиги."/>
+                    <WrapPanel Margin="0,14,0,0">
+                        <Button Content="⚡  Сгенерировать WARP"
                                 Style="{StaticResource PrimaryButton}"
-                                Click="BtnWarp_Click" MinWidth="220"/>
-                        <TextBlock x:Name="WarpStatus" Margin="16,0,0,0" VerticalAlignment="Center"
-                                   Style="{StaticResource Dim}" TextWrapping="Wrap"/>
-                    </StackPanel>
+                                Click="BtnGenWarp_Click" MinWidth="200" Margin="0,0,8,8"/>
+                        <Button Content="🌍  Сгенерировать geo"
+                                Style="{StaticResource SecondaryButton}"
+                                Click="BtnGenGeo_Click" MinWidth="200" Margin="0,0,8,8"/>
+                    </WrapPanel>
                 </StackPanel>
             </Border>
 

@@ -68,6 +68,11 @@ public class TrayIcon : IDisposable
 
     private void ShowWindow()
     {
+        if (_window is MainWindow mw)
+        {
+            mw.RestoreWindow();
+            return;
+        }
         _window.ShowInTaskbar = true;
         _window.Visibility = Visibility.Visible;
         if (_window.WindowState == WindowState.Minimized) _window.WindowState = WindowState.Normal;

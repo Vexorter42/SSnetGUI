@@ -86,6 +86,19 @@ public partial class MainWindow : Window
         timer.Start();
     }
 
+    /// <summary>Brings the window back from the tray / minimized / hidden state.</summary>
+    public void RestoreWindow()
+    {
+        ShowInTaskbar = true;
+        Visibility = Visibility.Visible;
+        if (WindowState == WindowState.Minimized) WindowState = WindowState.Normal;
+        Show();
+        Activate();
+        Topmost = true;
+        Topmost = false;
+        Focus();
+    }
+
     private void OnClosing(object? sender, CancelEventArgs e)
     {
         if (_tray != null && !_tray.IsExiting)
