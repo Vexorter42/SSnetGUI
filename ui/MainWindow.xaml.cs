@@ -86,6 +86,15 @@ public partial class MainWindow : Window
         timer.Start();
     }
 
+    private bool _forceExit;
+
+    /// <summary>Real exit (bypasses minimize-to-tray) — used before an OTA update installs.</summary>
+    public void ShutdownForUpdate()
+    {
+        _forceExit = true;
+        Close();
+    }
+
     /// <summary>Brings the window back from the tray / minimized / hidden state.</summary>
     public void RestoreWindow()
     {
@@ -101,7 +110,7 @@ public partial class MainWindow : Window
 
     private void OnClosing(object? sender, CancelEventArgs e)
     {
-        if (_tray != null && !_tray.IsExiting)
+        if (!_forceExit && _tray != null && !_tray.IsExiting)
         {
             e.Cancel = true;
             ShowInTaskbar = false;

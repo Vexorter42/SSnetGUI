@@ -144,11 +144,13 @@ public static class UpdateService
                 }
             }
 
-            // Run installer silently; it will close this app, update files, and restart it.
+            // Run installer silently. It force-closes this app (taskkill in the .iss),
+            // replaces files, and relaunches the app itself. The caller must exit this
+            // process so file locks are released.
             var psi = new ProcessStartInfo
             {
                 FileName = tmp,
-                Arguments = "/VERYSILENT /SUPPRESSMSGBOXES /CLOSEAPPLICATIONS /RESTARTAPPLICATIONS /NORESTART",
+                Arguments = "/VERYSILENT /SUPPRESSMSGBOXES /NORESTART",
                 UseShellExecute = true,
             };
             Process.Start(psi);

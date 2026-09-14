@@ -103,7 +103,11 @@ public partial class HomePage : UserControl
                 Dispatcher.Invoke(() => UpdateStatus.Text = $"Скачиваем… {p * 100:0}%"));
             var (ok, message) = await Services.UpdateService.DownloadAndApplyAsync(info, progress);
             if (ok)
-                UpdateStatus.Text = "Запуск установщика…";
+            {
+                UpdateStatus.Text = "Устанавливаем обновление… приложение закроется";
+                await System.Threading.Tasks.Task.Delay(1200);
+                (Window.GetWindow(this) as MainWindow)?.ShutdownForUpdate();
+            }
             else
             {
                 UpdateStatus.Text = "Не удалось обновить";
